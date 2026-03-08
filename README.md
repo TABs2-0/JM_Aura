@@ -2,16 +2,7 @@
 
 An e-commerce application built as a group project.
 
-## Team Members
 
-| Name | Student ID | GitHub Username | Role / Contribution |
-|------|-----------|-----------------|---------------------|
-| Ankiambom Richcal Chia | ICTU20233810 | [@mahitoh](https://github.com/mahitoh) | System design & UML documentation |
-| <!-- Add your name here --> | <!-- Student ID --> | <!-- @username --> | <!-- Your contribution --> |
-| <!-- Add your name here --> | <!-- Student ID --> | <!-- @username --> | <!-- Your contribution --> |
-| <!-- Add your name here --> | <!-- Student ID --> | <!-- @username --> | <!-- Your contribution --> |
-
-> **For teammates:** Copy a row, replace the placeholders with your details, and remove the `<!-- -->` comment tags.
 
 ## Documentation
 
