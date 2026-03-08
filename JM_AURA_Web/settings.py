@@ -11,32 +11,41 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import  os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv(
+    os.path.join(BASE_DIR, '.env')
+)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=a2-r49%jfvzfoc4y26ut&&q4$#nahkr$fsi^tdrna_pwvbg@o'
+SECRET_KEY = os.getenv("SECRET_KEY","JM_AURA_Web very secured key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG","True") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS","*").split(" ")
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'products',
+    'seller',
+    'orders'
 ]
 
 MIDDLEWARE = [
@@ -73,11 +82,15 @@ WSGI_APPLICATION = 'JM_AURA_Web.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "OPTIONS": {
+            "service": "my_service",
+            "passfile": "C:/Users/Public/PythonProjects/JM_AURA/.my_pgpass",
+        },
     }
 }
+
 
 
 # Password validation
