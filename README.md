@@ -6,7 +6,7 @@ An e-commerce application built as a group project.
 | Name | Student ID | GitHub Username | Role / Contribution |
 |------|-----------|-----------------|---------------------|
 | Ankiambom Richcal Chia | ICTU20233810 | [@mahitoh](https://github.com/mahitoh) | System design & UML documentation |
-| MOUNET NOTAM URIELLE MERVEILLE | ICTU20234379 | <!-- @username --> | README.md |
+| MOUNET NOTAM URIELLE MERVEILLE | ICTU20234379 | https://github.com/UrielleM_237| README.md |
 | <!-- Add your name here --> | <!-- Student ID --> | <!-- @username --> | <!-- Your contribution --> |
 | <!-- Add your name here --> | <!-- Student ID --> | <!-- @username --> | <!-- Your contribution --> |
 
