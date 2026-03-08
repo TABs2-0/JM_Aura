@@ -6,7 +6,7 @@ An e-commerce application built as a group project.
 
 | Name | Student ID | GitHub Username | Role / Contribution |
 |------|-----------|-----------------|---------------------|
-| Ankiambom Richcal Chia | ICTU20233810 | [@mahitoh](https://github.com/TABs2-0) | System design & UML documentation |
+| Ankiambom Richcal Chia | ICTU20233810 | [@mahitoh](https://github.com/mahitoh) | System design & UML documentation |
 | <!-- Add your name here --> | <!-- Student ID --> | <!-- @username --> | <!-- Your contribution --> |
 | <!-- Add your name here --> | <!-- Student ID --> | <!-- @username --> | <!-- Your contribution --> |
 | <!-- Add your name here --> | <!-- Student ID --> | <!-- @username --> | <!-- Your contribution --> |
