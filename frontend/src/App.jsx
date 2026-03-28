@@ -1,28 +1,75 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import ProductList from './pages/ProductList';
+import Collections from './pages/Collections';
 import ProductDetail from './pages/ProductDetail';
+import Checkout from './pages/Checkout';
+import Profile from './pages/Profile';
+import About from './components/About';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductList />} />
-            <Route path="/category/:categoryId" element={<ProductList />} />
-            <Route path="/product/:productId" element={<ProductDetail />} />
-            {/* Catch-all route to redirect any unhandled route to the products list to allow the demo links to work seamlessly */}
-            <Route path="*" element={<ProductList />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/collections" element={
+          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+            <Navbar />
+            <Collections />
+            <Footer />
+          </div>
+        } />
+        <Route path="/product/:id" element={
+          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+            <Navbar />
+            <ProductDetail />
+            <Footer />
+          </div>
+        } />
+        <Route path="/checkout" element={
+          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+            <Checkout />
+          </div>
+        } />
+        <Route path="/profile" element={
+          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+            <Navbar />
+            <Profile />
+            <Footer />
+          </div>
+        } />
+        <Route path="/about" element={
+          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+            <Navbar />
+            <div className="flex-1 flex items-center justify-center pt-32 pb-20"><About /></div>
+            <Footer />
+          </div>
+        } />
+        <Route path="/trends" element={
+          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+            <Navbar />
+            <div className="flex-1 flex items-center justify-center font-headline text-4xl text-on-surface-variant pt-32">Trends Coming Soon</div>
+            <Footer />
+          </div>
+        } />
+        <Route path="/contact" element={
+          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+            <Navbar />
+            <div className="flex-1 flex items-center justify-center font-headline text-4xl text-on-surface-variant pt-32">Contact Coming Soon</div>
+            <Footer />
+          </div>
+        } />
+        <Route path="*" element={
+          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+            <Navbar />
+            <div className="flex-1 flex items-center justify-center font-headline text-4xl text-on-surface-variant pt-32">Page Not Found</div>
+            <Footer />
+          </div>
+        } />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
