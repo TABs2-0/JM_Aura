@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  }
+}
+
+@layer utilities {
+  .editorial-arch {
+    border-top-left-radius: 9999px;
+    border-top-right-radius: 9999px;
+  }
+  .text-vertical {
+    writing-mode: vertical-rl;
+  }
+  .newsreader-italic {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+  }
+  .newsreader-regular {
+    font-family: 'Newsreader', serif;
+  }
+  .glass-nav {
+    background: rgba(251, 249, 244, 0.8);
+    backdrop-filter: blur(20px);
+  }
+  .serif-tight { letter-spacing: -0.02em; }
+  .label-tracking { letter-spacing: 0.1em; }
+  .arched-frame { border-radius: 50% 50% 0 0 / 40% 40% 0 0; }
+}

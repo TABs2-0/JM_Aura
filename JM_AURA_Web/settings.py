@@ -35,7 +35,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS","*").split(" ")
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin'
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,10 +84,11 @@ WSGI_APPLICATION = 'JM_AURA_Web.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "OPTIONS": {
-            "service": "my_service",
-            "passfile": "C:/Users/Public/PythonProjects/JM_AURA/.my_pgpass",
-        },
+        "NAME": os.getenv("DB_NAME", "jm_aura"),
+        "USER": os.getenv("DB_USER", "postgres"),
+        "PASSWORD": os.getenv("DB_PASSWORD", "123456"),
+        "HOST": os.getenv("DB_HOST", "localhost"),
+        "PORT": os.getenv("DB_PORT", "5432"),
     }
 }
 
