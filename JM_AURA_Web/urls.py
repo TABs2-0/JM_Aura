@@ -29,5 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include("products.urls")),
     path('db_test/', db_version_view.db_version, name='db_version'),
+    path('cart/', include("cart.urls")),
+    path('orders/',include("orders.urls")),
 
 ]
