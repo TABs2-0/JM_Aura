@@ -15,8 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # API endpoints
+    path('api/', include('products.urls')),
+    path('api/', include('orders.urls')),
+    path('api/', include('seller.urls')),
+    
+    # REST framework auth and docs
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/docs/', include_docs_urls(title='JM Aura API')),
 ]
