@@ -27,7 +27,7 @@ const apiRequest = async (endpoint, options = {}) => {
   const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    ...(token && { 'Authorization': `Bearer ${token}` }), // Using Bearer (JWT) by default
+    ...(token && { 'Authorization': `Token ${token}` }), // DRF TokenAuthentication
     ...options.headers,
   };
 

@@ -1,8 +1,11 @@
+from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from .models import Seller
 
 
 class SellerSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True)
+
     class Meta:
         model = Seller
         fields = [
@@ -11,9 +14,16 @@ class SellerSerializer(serializers.ModelSerializer):
             'email',
             'phone',
             'address',
+            'password',
         ]
         read_only_fields = ['id']
-        # Don't include password in responses
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
+
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        # Only hash when a new plain-text password is explicitly submitted.
+        if 'password' in validated_data:
+            validated_data['password'] = make_password(validated_data['password'])
+        return super().update(instance, validated_data)
