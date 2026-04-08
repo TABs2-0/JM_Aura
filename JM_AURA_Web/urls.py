@@ -19,6 +19,7 @@ from django.urls import path, include
 from .auth_views import LoginView, RegistrationView
 
 urlpatterns = [
+    path('', health_check),
     path('admin/', admin.site.urls),
 
     # API endpoints
