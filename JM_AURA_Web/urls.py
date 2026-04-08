@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.http import JsonResponse
 from django.urls import path, include
 from JM_AURA_Web import db_version_view
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 def health_check(request):
@@ -32,4 +35,5 @@ urlpatterns = [
     path('cart/', include("cart.urls")),
     path('orders/',include("orders.urls")),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
