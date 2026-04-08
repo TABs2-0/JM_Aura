@@ -63,7 +63,7 @@ const ProductDetail = () => {
         <nav className="flex space-x-2 text-xs font-label uppercase tracking-widest text-on-surface-variant/60">
           <Link className="hover:text-primary transition-colors" to="/collections">Collections</Link>
           <span>/</span>
-          <Link className="hover:text-primary transition-colors" to="#">{product.product_category}</Link>
+          <Link className="hover:text-primary transition-colors" to={`/collections?product_category=${product.product_category}`}>{product.product_category}</Link>
           <span>/</span>
           <span className="text-on-surface">{product.product_name}</span>
         </nav>

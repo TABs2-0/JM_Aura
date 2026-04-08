@@ -66,6 +66,14 @@ export const orderAPI = {
 
 // User Profile Services
 export const userAPI = {
+  login: (credentials) => apiRequest('/auth/login/', {
+    method: 'POST',
+    body: JSON.stringify(credentials),
+  }),
+  signup: (userData) => apiRequest('/auth/registration/', {
+    method: 'POST',
+    body: JSON.stringify(userData),
+  }),
   getProfile: () => apiRequest('/profile/'),
   updateProfile: (userData) => apiRequest('/profile/', {
     method: 'PUT',

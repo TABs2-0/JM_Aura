@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -13,12 +14,12 @@ const Hero = () => {
             Hand-sculpted in our heritage atelier, each piece is a celebration of organic forms and the quiet strength of precious metals.
           </p>
           <div className="flex gap-4">
-            <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-4 rounded-full font-label text-xs tracking-widest uppercase hover:opacity-90 transition-all">
+            <Link to="/collections" className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-4 rounded-full font-label text-xs tracking-widest uppercase hover:opacity-90 transition-all">
               Explore Collection
-            </button>
-            <button className="px-10 py-4 rounded-full border border-outline-variant/40 font-label text-xs tracking-widest uppercase hover:bg-surface-container-low transition-all">
+            </Link>
+            <Link to="/about" className="px-10 py-4 rounded-full border border-outline-variant/40 font-label text-xs tracking-widest uppercase hover:bg-surface-container-low transition-all">
               Our Story
-            </button>
+            </Link>
           </div>
         </div>
         <div className="col-span-12 lg:col-span-7 relative">
