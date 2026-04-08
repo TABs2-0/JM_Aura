@@ -27,7 +27,7 @@ const apiRequest = async (endpoint, options = {}) => {
   const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    ...(token && { 'Authorization': `Bearer ${token}` }), // Using Bearer (JWT) by default
+    ...(token && { 'Authorization': `Token ${token}` }), // DRF TokenAuthentication
     ...options.headers,
   };
 
@@ -66,6 +66,14 @@ export const orderAPI = {
 
 // User Profile Services
 export const userAPI = {
+  login: (credentials) => apiRequest('/auth/login/', {
+    method: 'POST',
+    body: JSON.stringify(credentials),
+  }),
+  signup: (userData) => apiRequest('/auth/registration/', {
+    method: 'POST',
+    body: JSON.stringify(userData),
+  }),
   getProfile: () => apiRequest('/profile/'),
   updateProfile: (userData) => apiRequest('/profile/', {
     method: 'PUT',

@@ -15,21 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.http import JsonResponse
 from django.urls import path, include
-from JM_AURA_Web import db_version_view
-
-
-def health_check(request):
-    return JsonResponse({"message": "API is running"})
-
+from .auth_views import LoginView, RegistrationView
 
 urlpatterns = [
     path('', health_check),
     path('admin/', admin.site.urls),
-    path('products/', include("products.urls")),
-    path('db_test/', db_version_view.db_version, name='db_version'),
-    path('cart/', include("cart.urls")),
-    path('orders/',include("orders.urls")),
 
+    # API endpoints
+    path('api/', include('products.urls')),
+    path('api/', include('orders.urls')),
+    path('api/', include('seller.urls')),
+
+    # Auth endpoints
+    path('api/auth/login/', LoginView.as_view(), name='auth-login'),
+    path('api/auth/registration/', RegistrationView.as_view(), name='auth-registration'),
+
+    # REST framework login for browsable API
+    path('api-auth/', include('rest_framework.urls')),
 ]

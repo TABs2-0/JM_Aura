@@ -1,44 +1,42 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from products.models import Products
-from products.serializer import ProductsSerializer
+from .models import Products
+from .serializers import ProductSerializer
+
+ALLOWED_ORDER_FIELDS = {'product_name', 'product_price', 'product_category', 'created_at'}
 
 
-class ProductList(APIView):
+class ProductViewSet(viewsets.ModelViewSet):
+    serializer_class = ProductSerializer
 
-    def get(self, request, format=None):
-        products = Products.objects.all()
+    def get_queryset(self):
+        queryset = Products.objects.all()
 
-
-        query = request.query_params.get('query')
-        if query:
-            products = products.filter(product_name__icontains=query)
-
-
-        category = request.query_params.get('category')
+        category = self.request.query_params.get('product_category')
         if category:
-            products = products.filter(product_category__iexact=category)
+            queryset = queryset.filter(product_category=category)
 
+        ordering = self.request.query_params.get('ordering')
+        if ordering:
+            field = ordering.lstrip('-')
+            if field in ALLOWED_ORDER_FIELDS:
+                queryset = queryset.order_by(ordering)
 
-        min_price = request.query_params.get('min_price')
-        max_price = request.query_params.get('max_price')
+        return queryset
 
-        if min_price:
-            products = products.filter(product_price__gte=min_price)
-        if max_price:
-            products = products.filter(product_price__lte=max_price)
+    @action(detail=False, methods=['GET'])
+    def categories(self, request):
+        """Get all unique product categories"""
+        categories = Products.objects.values_list('product_category', flat=True).distinct()
+        return Response({'categories': list(categories)})
 
-
-        is_available = request.query_params.get('is_available')
-        if is_available:
-            if is_available.lower() == 'true':
-                products = products.filter(is_available=True)
-            elif is_available.lower() == 'false':
-                products = products.filter(is_available=False)
-
-
-        products = products[:10]
-
-        serializer = ProductsSerializer(products, many=True)
-        return Response(serializer.data)
+    @action(detail=False, methods=['GET'])
+    def by_category(self, request):
+        """Filter products by category"""
+        category = request.query_params.get('category', None)
+        if category:
+            products = Products.objects.filter(product_category=category)
+            serializer = self.get_serializer(products, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'Category parameter required'}, status=400)

@@ -19,12 +19,12 @@ const About = () => {
             <p>Every piece is finished by hand, ensuring that no two items are identical. It is this intentional imperfection that gives our work its soul and its "Aura".</p>
           </div>
           <div className="mt-12">
-            <a className="inline-flex items-center gap-4 group" href="#">
+            <button className="inline-flex items-center gap-4 group">
               <span className="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
                 <span className="material-symbols-outlined" data-icon="play_arrow">play_arrow</span>
               </span>
               <span className="font-label text-xs tracking-widest uppercase">Watch the process</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>

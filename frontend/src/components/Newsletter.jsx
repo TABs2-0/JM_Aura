@@ -12,9 +12,9 @@ const Newsletter = () => {
             <button className="absolute right-0 bottom-4 font-label text-xs tracking-widest uppercase text-primary hover:opacity-70 transition-opacity">Subscribe</button>
           </form>
           <div className="mt-12 flex justify-center gap-8 text-on-surface-variant/60">
-            <a className="hover:text-primary transition-colors" href="#"><span className="material-symbols-outlined" data-icon="share">share</span></a>
-            <a className="hover:text-primary transition-colors" href="#"><span className="material-symbols-outlined" data-icon="mail">mail</span></a>
-            <a className="hover:text-primary transition-colors" href="#"><span className="material-symbols-outlined" data-icon="location_on">location_on</span></a>
+            <button className="hover:text-primary transition-colors" type="button"><span className="material-symbols-outlined" data-icon="share">share</span></button>
+            <button className="hover:text-primary transition-colors" type="button"><span className="material-symbols-outlined" data-icon="mail">mail</span></button>
+            <button className="hover:text-primary transition-colors" type="button"><span className="material-symbols-outlined" data-icon="location_on">location_on</span></button>
           </div>
         </div>
       </div>

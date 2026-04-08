@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { userAPI, orderAPI } from '../services/api';
 
 const Profile = () => {
@@ -63,9 +64,9 @@ const Profile = () => {
         <div className="max-w-md">
           <h2 className="text-3xl font-headline mb-4 italic">Authentication Required</h2>
           <p className="text-on-surface-variant mb-8 font-body leading-relaxed">{error}</p>
-          <a href="/login" className="px-8 py-3 bg-primary text-on-primary rounded-full font-label uppercase tracking-widest text-xs transition-opacity hover:opacity-90">
+          <Link to="/login" className="px-8 py-3 bg-primary text-on-primary rounded-full font-label uppercase tracking-widest text-xs transition-opacity hover:opacity-90">
             Sign In
-          </a>
+          </Link>
         </div>
       </div>
     );

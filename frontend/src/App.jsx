@@ -5,7 +5,11 @@ import Collections from './pages/Collections';
 import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
 import Profile from './pages/Profile';
-import About from './components/About';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Trends from './pages/Trends';
+import Contact from './pages/Contact';
+import AboutPage from './pages/AboutPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -14,6 +18,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/collections" element={
           <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
             <Navbar />
@@ -40,27 +46,9 @@ function App() {
             <Footer />
           </div>
         } />
-        <Route path="/about" element={
-          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
-            <Navbar />
-            <div className="flex-1 flex items-center justify-center pt-32 pb-20"><About /></div>
-            <Footer />
-          </div>
-        } />
-        <Route path="/trends" element={
-          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
-            <Navbar />
-            <div className="flex-1 flex items-center justify-center font-headline text-4xl text-on-surface-variant pt-32">Trends Coming Soon</div>
-            <Footer />
-          </div>
-        } />
-        <Route path="/contact" element={
-          <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
-            <Navbar />
-            <div className="flex-1 flex items-center justify-center font-headline text-4xl text-on-surface-variant pt-32">Contact Coming Soon</div>
-            <Footer />
-          </div>
-        } />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/trends" element={<Trends />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={
           <div className="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
             <Navbar />
