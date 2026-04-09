@@ -34,7 +34,7 @@ urlpatterns = [
     path('db_test/', db_version_view.db_version, name='db_version'),
     path('cart/', include("cart.urls")),
     path('orders/',include("orders.urls")),
-    path('sellers/',include("sellers.urls")),
+    path('seller/',include("seller.urls")),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
