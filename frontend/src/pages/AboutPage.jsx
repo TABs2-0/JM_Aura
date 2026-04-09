@@ -23,7 +23,8 @@ const AboutPage = () => {
             <div className="max-w-screen-2xl mx-auto px-12 flex flex-col md:flex-row items-center gap-24">
                 <div className="w-full md:w-1/2 relative">
                     <div className="editorial-arch w-full aspect-[3/4] overflow-hidden shadow-2xl relative z-10">
-                        <img src="https://images.unsplash.com/photo-1544365288-e92592539097?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80" alt="Artisan working with molten metal" className="w-full h-full object-cover" />
+                        <img src="/assets/IMG-20260225-WA0069.jpg" alt="Atelier detail from the Aura workshop" className="w-full h-full object-cover" />
+
                     </div>
                     <div className="absolute top-1/2 -right-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-0"></div>
                 </div>
@@ -64,7 +65,8 @@ const AboutPage = () => {
         {/* Visionary Link */}
         <section className="pb-40 text-center">
             <div className="inline-block relative">
-                <img src="https://images.unsplash.com/photo-1616520330620-3796dced4428?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Beautiful hands holding a sketchbook" className="w-[800px] h-48 object-cover rounded-full opacity-30 grayscale blur-[2px]" />
+                <img src="/assets/IMG-20260225-WA0065.jpg" alt="Artistic composition of JM_Aura pieces" className="w-[800px] h-48 object-cover rounded-full opacity-30 grayscale blur-[2px]" />
+
                 <div className="absolute inset-0 flex items-center justify-center">
                     <Link to="/contact" className="group">
                         <h2 className="font-headline text-4xl md:text-6xl tracking-tight transition-all group-hover:scale-105">Start Your <span className="italic underline underline-offset-8">Commission</span></h2>

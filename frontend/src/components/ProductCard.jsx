@@ -15,10 +15,13 @@ const ProductCard = ({ product, index }) => {
   if (!product) return null;
 
   // Handles both DRF absolute URLs for images and relative paths if needed
-  const imageUrl = product.product_image || "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop";
+  const imageUrl = product.product_image || "/assets/best_choice.jpg";
+
 
   return (
-    <div className={`flex flex-col ${index % 3 === 1 ? 'md:mt-12 lg:mt-24' : ''} ${index % 3 === 2 ? 'lg:mt-12' : ''}`}>
+    <div className="flex flex-col">
+
+
       <div className={`relative overflow-hidden aspect-[4/5] group bg-surface-container-low ${index % 2 === 0 ? 'rounded-t-full' : 'rounded-lg'}`}>
         <img 
           alt={product.product_name} 

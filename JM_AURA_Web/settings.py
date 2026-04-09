@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-from urllib.parse import urlparse, parse_qsl
 
 load_dotenv()
 
@@ -87,16 +86,27 @@ WSGI_APPLICATION = 'JM_AURA_Web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+pgpass_path = BASE_DIR / "my_pgpass"
+pgpass_values = {}
+
+if pgpass_path.exists():
+    pgpass_parts = pgpass_path.read_text(encoding="utf-8").strip().split(":")
+    if len(pgpass_parts) == 5:
+        pgpass_values = {
+            "HOST": pgpass_parts[0],
+            "PORT": pgpass_parts[1],
+            "USER": pgpass_parts[3],
+            "PASSWORD": pgpass_parts[4],
+        }
 
 DATABASES = {
     "default": {
         "ENGINE": os.getenv("DB_ENGINE", "django.db.backends.postgresql"),
         "NAME": os.getenv("DB_NAME", "jm_aura"),
-        "USER": os.getenv("DB_USER", "postgres"),
-        "PASSWORD": os.getenv("DB_PASSWORD", ""),
-        "HOST": os.getenv("DB_HOST", "localhost"),
-        "PORT": os.getenv("DB_PORT", "5432"),
+        "USER": os.getenv("DB_USER", pgpass_values.get("USER", "postgres")),
+        "PASSWORD": os.getenv("DB_PASSWORD", pgpass_values.get("PASSWORD", "")),
+        "HOST": os.getenv("DB_HOST", pgpass_values.get("HOST", "localhost")),
+        "PORT": os.getenv("DB_PORT", pgpass_values.get("PORT", "5432")),
     }
 }
 

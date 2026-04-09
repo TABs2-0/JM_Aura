@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { productAPI } from '../services/api';
 import ProductCard from '../components/ProductCard';
+import { mockProducts } from '../data/mockProducts';
 
 const Collections = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,28 +18,33 @@ const Collections = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        // Pass current filters and ordering to the API
-        const params = {
-          product_category: category || undefined,
-          ordering: ordering || undefined,
-        };
         
-        const data = await productAPI.getAll(params);
-        
-        // Handle DRF standard paginated response { results: [], count: 0, ... }
-        // or a simple array if pagination is disabled
-        if (data && data.results) {
-          setProducts(data.results);
-        } else if (Array.isArray(data)) {
-          setProducts(data);
-        } else {
-          setProducts([]);
+        // Simulating the premium discovery experience
+        await new Promise(resolve => setTimeout(resolve, 800));
+
+        let results = [...mockProducts];
+
+        // Apply Category Filter (Matching plural names in mockProducts)
+        if (category) {
+          results = results.filter(p => p.product_category === category);
+        }
+
+        // Apply Ordering
+        if (ordering) {
+          if (ordering === 'product_price') {
+            results.sort((a, b) => a.product_price - b.product_price);
+          } else if (ordering === '-product_price') {
+            results.sort((a, b) => b.product_price - a.product_price);
+          } else if (ordering === 'product_name') {
+            results.sort((a, b) => a.product_name.localeCompare(b.product_name));
+          }
         }
         
+        setProducts(results);
         setError(null);
       } catch (err) {
-        console.error('Failed to fetch products:', err);
-        setError('Unable to load collections at this time. Please try again later.');
+        console.error('Failed to load products:', err);
+        setError('Unable to load our curated collections at this time.');
       } finally {
         setLoading(false);
       }
@@ -46,6 +52,8 @@ const Collections = () => {
 
     fetchProducts();
   }, [category, ordering]);
+
+
 
   const updateFilter = (key, value) => {
     if (!value) {
@@ -114,10 +122,11 @@ const Collections = () => {
             <div className="absolute top-full left-0 mt-2 bg-surface shadow-xl py-4 px-6 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 rounded-lg">
               <ul className="space-y-3 font-label text-xs tracking-wider">
                 <li onClick={() => updateFilter('product_category', '')} className="hover:text-primary transition-colors cursor-pointer">All Categories</li>
-                <li onClick={() => updateFilter('product_category', 'Necklace')} className="hover:text-primary transition-colors cursor-pointer">Necklaces</li>
-                <li onClick={() => updateFilter('product_category', 'Ring')} className="hover:text-primary transition-colors cursor-pointer">Rings</li>
-                <li onClick={() => updateFilter('product_category', 'Bracelet')} className="hover:text-primary transition-colors cursor-pointer">Bracelets</li>
-                <li onClick={() => updateFilter('product_category', 'Earring')} className="hover:text-primary transition-colors cursor-pointer">Earrings</li>
+                <li onClick={() => updateFilter('product_category', 'Necklaces')} className="hover:text-primary transition-colors cursor-pointer">Necklaces</li>
+                <li onClick={() => updateFilter('product_category', 'Rings')} className="hover:text-primary transition-colors cursor-pointer">Rings</li>
+                <li onClick={() => updateFilter('product_category', 'Bracelets')} className="hover:text-primary transition-colors cursor-pointer">Bracelets</li>
+                <li onClick={() => updateFilter('product_category', 'Earrings')} className="hover:text-primary transition-colors cursor-pointer">Earrings</li>
+
               </ul>
             </div>
           </div>
@@ -142,7 +151,8 @@ const Collections = () => {
       </section>
 
       {/* Product Gallery (Dynamic Asymmetric Layout) */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-32">
+
         {products.map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />
         ))}

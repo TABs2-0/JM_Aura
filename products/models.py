@@ -13,6 +13,10 @@ class Products(models.Model):
     product_stock = models.IntegerField()
     product_category = models.CharField( max_length=100)
     is_available = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.product_name

@@ -25,11 +25,14 @@ const Hero = () => {
         <div className="col-span-12 lg:col-span-7 relative">
           <div className="grid grid-cols-2 gap-6 items-end">
             <div className="editorial-arch overflow-hidden aspect-[3/4] shadow-2xl">
-              <img className="w-full h-full object-cover" alt="Close-up of a sophisticated woman wearing layered gold necklaces and minimal earrings in soft morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTTPkhENTqPeP-guPbUdibufvk2VnMa_344uAaxRuC-mC3vRmV3JeKOu_LUujGT7Az-aWcI5CkjMBvrMFZLkJpk4LrH88M37KDiEUdvXsUHOjx65_MPgHl7uMg7vGs3lweYXp8HJbUVMSSsBhS6FjyoNleDgsOjc0r_KbiQaS6xuxTEDYRMKMrdZY0JIXWLNM9QrGNCRvGmMLkGB82S3ytk6fVZXo0Hmp-Yp3YOaoLWWZL9nEkO8F_w1qgeIOtPMHBQV4BoSapRqI" />
+              <img className="w-full h-full object-cover" alt="Smoky Quartz Elegance" src="/assets/IMG-20260225-WA0069.jpg" />
             </div>
             <div className="editorial-arch overflow-hidden aspect-[4/5] scale-90 -translate-y-12">
-              <img className="w-full h-full object-cover" alt="Artistic macro shot of a gold ring being carefully polished by hand in a sunlit artisan workshop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn71WUJq0ZOUNANduOeh9RqO7371210m7omGm-O6lbJfcP_A0FynFQAAV-LQcgyPduhpf7IIHvgl4I4aBA0eltBCrWleH3sYRb3mLR3UwD-wvsQU1X63trr4eY4GZ2uuStxB7Nl8wRfg-1DHneR_dOtiLGbpYPTCRZ9ys6TZce0zPG3r79yMausIcqmiwJkdbvYcxyMOU89w-z43T-QtctvItPKXd-3REBNlYd39M-zlGYymcE_afudso6W0qhbIcEUz-bqNKEj5k" />
+              <img className="w-full h-full object-cover" alt="Aquamarine Serenity" src="/assets/IMG-20260225-WA0058.jpg" />
             </div>
+
+
+
           </div>
           {/* Editorial Accent */}
           <div className="absolute -right-12 top-1/2 -translate-y-1/2 hidden xl:block">

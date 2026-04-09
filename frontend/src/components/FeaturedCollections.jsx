@@ -1,7 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { mockProducts } from '../data/mockProducts';
+import ProductCard from './ProductCard';
 
 const FeaturedCollections = () => {
+  // Get first 6 featured products
+  // Get a selection of unique products for the gallery (first 8)
+  const featuredProducts = mockProducts.slice(0, 8);
+  
+  // Hand-pick specific premium pieces for the bento grid section
+  const heroProduct = mockProducts.find(p => p.id === 'local-product-12') || mockProducts[0]; // Best Choice
+  const sideProduct1 = mockProducts.find(p => p.id === 'local-product-15') || mockProducts[1]; // Infinity Set
+  const sideProduct2 = mockProducts.find(p => p.id === 'local-product-24') || mockProducts[2]; // Tanzanite
+  const sideProducts = [sideProduct1, sideProduct2];
+
+
+
   return (
     <section className="py-32 bg-surface-container-low">
       <div className="max-w-screen-2xl mx-auto px-12">
@@ -12,33 +26,66 @@ const FeaturedCollections = () => {
           </div>
           <Link className="font-label text-xs tracking-widest uppercase text-primary border-b border-primary/30 pb-1 hover:border-primary transition-all" to="/collections">View All Categories</Link>
         </div>
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-[800px]">
-          <div className="md:col-span-7 group relative overflow-hidden bg-surface-container-lowest rounded-xl">
-            <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Luxury display of emerald and gold necklaces arranged on a textured cream linen surface with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8ei6UKEidFnvwkziVxLx90CcvHhN3q-sTYpt0kuGVl6r5r2qIsfZJAwuDyVmurBuWlVXGfUWIB5qDsIKa1z2WWtIsfLEKNIUmBVdocnvYM5TbKomSYxkaHJof4Wd15NgYpeZ7-vDMSET8Lify1nu4ywXrVeZzhSWbDhGV387iDznLHyYHSn65Lmsc6t06aTQ4jX5UGQNIxK1tE-IVwVZbKUHLQ1QEcDjhfnVBWRsSWNoHMtTG43zx1DMLe_76YJgAilF7KQPKEWg" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex flex-col justify-end p-10">
+        
+        {/* Bento Grid Layout - Responsive and Robust */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+
+
+          {/* Hero Product - Large */}
+          <div className="md:col-span-7 group relative overflow-hidden bg-surface-container-lowest rounded-xl aspect-[4/5] md:aspect-auto md:h-[700px]">
+            <img 
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+              alt={heroProduct.product_name}
+              src={heroProduct.product_image}
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-8 md:p-12">
               <span className="text-white/80 font-label text-xs tracking-widest uppercase mb-2">Signature Series</span>
-              <h3 className="text-white font-headline text-4xl mb-6">The Eternal Link</h3>
-              <Link to="/product/the-eternal-link" className="w-fit text-white font-label text-xs tracking-widest uppercase flex items-center gap-2 group/btn">
-                Explore <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+              <h3 className="text-white font-headline text-4xl mb-6">{heroProduct.product_name}</h3>
+              <Link 
+                to={`/product/${heroProduct.id}`} 
+                className="w-fit text-white font-label text-[10px] tracking-widest uppercase flex items-center gap-2 group/btn bg-white/10 hover:bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 transition-all"
+              >
+                Explore Piece <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
               </Link>
             </div>
           </div>
-          <div className="md:col-span-5 grid grid-rows-2 gap-8">
-            <div className="group relative overflow-hidden bg-surface-container-lowest rounded-xl">
-              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Minimalist gold rings stacked on a model's hand against a neutral warm background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDY4ws3_OUvAO0pd-pCxTZeFkU7UQI9YHdTSncSgrDjNE9kJQO1PBMRxvF6P1vcOxxClUlFeIXNvUqCjYtEI_Qt8SqXazq5aqwbjqjtnrzuyvGOtmc55GDW5_XA_HftlUEcyOhm6CBUbLy82zLZyhvTFD-JxjfH3ujWhVw86Cy5Y-wySgid0U8Tr83h_Ygu-mAn5dqkVmmaGkbJJ6UwmdcFTtAoVDZ610qxTQcL7V_pvdYy0LQscm9RoXArORaszCvM9xs9jsG0nM" />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
-              <div className="absolute bottom-8 left-8">
-                <h3 className="text-white font-headline text-3xl">Sculptural Rings</h3>
-              </div>
-            </div>
-            <div className="group relative overflow-hidden bg-surface-container-lowest rounded-xl">
-              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Elegant pearl and gold drop earrings hanging from a ceramic stand in a well-lit studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi7Kw4RYbhkuXTlTqqadosmbv-NJSB0s2VnFPPx0HtbsJhmq0y5CJN6IevHFmPGYNRh0sUBBH6VxtlA_MtlPq8tdXojAfoxoTYtNvk_7BAISanVSSE7BWLii98MPzMSxPERYkX1ipLDe43WfarvJIiFv7zqWI03mtOGWiTqVnTP7J_G4y0oMSVuzblZncr6a2KPVqNOkE6KCURl6jsbYnOuzvkeglhDtDeTgG4Myf_rmyI4cm-Dp9zPw1b1cNf9i9OtEWZRk-nDyc" />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
-              <div className="absolute bottom-8 left-8">
-                <h3 className="text-white font-headline text-3xl">The Pearl Edit</h3>
-              </div>
-            </div>
+
+
+          
+          {/* Side Products */}
+          <div className="md:col-span-5 flex flex-col gap-8 md:h-[700px]">
+            {sideProducts.map((product, idx) => (
+              <Link 
+                key={idx}
+                to={`/product/${product.id}`}
+                className="group relative overflow-hidden bg-surface-container-lowest rounded-xl flex-1 min-h-[300px]"
+              >
+                <img 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  alt={product.product_name}
+                  src={product.product_image}
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8">
+                  <h3 className="text-white font-headline text-3xl">{product.product_name}</h3>
+                  <p className="text-white/90 font-label text-[10px] tracking-widest uppercase mt-2">${parseFloat(product.product_price).toLocaleString()}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+        </div>
+
+        {/* Featured Products Grid */}
+        <div className="mt-32">
+          <h3 className="font-headline text-3xl text-on-surface mb-12">Featured Items</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-24">
+
+            {featuredProducts.map((product, index) => (
+              <ProductCard key={product.id} product={product} index={index} />
+            ))}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { productAPI } from '../services/api';
+import { mockProducts } from '../data/mockProducts';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -12,14 +12,22 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        // If ID is not a UUID (like the temporary 'pearl-drop-earring' string), we might need to handle it
-        // For now, assuming standard API behavior
-        const data = await productAPI.getById(id);
-        setProduct(data);
-        setError(null);
+        
+        // Premium wait experience
+        await new Promise(resolve => setTimeout(resolve, 600));
+        
+        // Find product in our curated mock data
+        const item = mockProducts.find(p => p.id === id);
+        
+        if (item) {
+          setProduct(item);
+          setError(null);
+        } else {
+          setError('The masterpiece you seek is currently traversing another dimension.');
+        }
       } catch (err) {
-        console.error('Failed to fetch product:', err);
-        setError('The piece you are looking for could not be found.');
+        console.error('Failed to retrieve piece:', err);
+        setError('Our archives are currently being reorganized. Please try again soon.');
       } finally {
         setLoading(false);
       }
@@ -27,6 +35,8 @@ const ProductDetail = () => {
 
     if (id) fetchProduct();
   }, [id]);
+
+
 
   if (loading) {
     return (
@@ -78,7 +88,8 @@ const ProductDetail = () => {
               <img 
                 alt={product.product_name} 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                src={product.product_image || "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop"}
+                src={product.product_image || "/assets/best_choice.jpg"}
+
               />
             </div>
           </div>
